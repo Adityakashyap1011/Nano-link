@@ -15,8 +15,6 @@ const Home = () => {
     useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log('User already exists');
-      console.log(token);
       navigate("/dashboard");
     }
   }, []);
@@ -27,7 +25,6 @@ const Home = () => {
           const apiEndpoint = login ? "http://localhost:3000/api/auth/login" : "http://localhost:3000/api/auth/register";
           const response=await axios.post(apiEndpoint,{ email ,password});
           localStorage.setItem("token",response.data.token);
-          console.log(response.data.token);
           navigate("/dashboard");
         }
         catch(err){

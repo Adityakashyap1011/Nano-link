@@ -11,11 +11,20 @@ router.post("/register", async (req, res) => {
   try {
     const user = new User({ email, password });
     await user.save();
-    res.status(201).json({ message: "User registered successfully" });
+    
+    console.log("User saved:", user);
+    const token = jwt.sign({ id: user._id }, "xyz", {
+      expiresIn: "1h",
+    });
+    console.log("token ",token);
+    res.status(201).json({ token });
+
   } catch (error) {
     res.status(400).json({ error: "User registration failed" });
   }
 });
+
+
 
 router.post("/login", async (req, res) => {      
   const { email, password } = req.body;
@@ -32,11 +41,10 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, "xyz", {
-      expiresIn: "1d",
+      expiresIn: "1h",
     });
     res.json({ token });
   } catch (error) {
-    console.error("Login error:", error);
     res.status(500).json({ error: "Login failed" });
   }
 });

@@ -23,6 +23,7 @@ mongoose
 
 app.use("/api/url", urlRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/", urlRoutes);
 
 const port =3000;
 app.listen(port, () => {

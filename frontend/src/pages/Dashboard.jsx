@@ -65,12 +65,7 @@ const Dashboard = () => {
 
       <div className="main">
         <h1>Enter Your Long URL</h1>
-        <input
-          type="url"
-          value={url}
-          placeholder="https://example.com"
-          onChange={(e) => setUrl(e.target.value)}
-        />
+        <input type="url" value={url} placeholder="https://example.com" onChange={(e) => setUrl(e.target.value)}  />
         <button onClick={handleClick}>
           {loading ? 'Shortening...' : 'Shorten!'}
         </button>
